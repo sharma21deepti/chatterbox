@@ -43,13 +43,14 @@ ChatterBox is a full-stack real-time chat application that allows users to excha
 
 ### Run the app
 
-Frontend 
-cd frontend
+Frontend:  
+
+cd frontend  
 npm run dev
 
-Backend
+Backend:
 
-cd Backend
+cd Backend  
 nodemon
 .
 .
