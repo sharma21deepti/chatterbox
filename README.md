@@ -51,11 +51,11 @@ npm run dev
 Backend:
 
 cd Backend  
-nodemon
+nodemon  
+.  
+.  
+.  
 .
-.
-.
-
 > 🚧 **Project Status: In Progress**  
 > This project is actively being developed. New features and improvements are coming soon. Your feedback is welcome!
 
