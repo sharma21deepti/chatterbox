@@ -1,0 +1,98 @@
+.label .ant-form-item-control-input-content {
+  font-family: "Tagesschrift", system-ui;
+}
+.label {
+  margin-bottom: 5px;
+  line-height: 16px;
+}
+.startText {
+  font-size: 30px;
+  text-align: center;
+  font-family: "Tagesschrift", system-ui;
+  letter-spacing: 1px;
+  margin-top: -20px;
+}
+
+.loginFormDiv {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100vh;
+}
+
+.loginCard {
+  height: 45vh;
+  width: 35vw !important;
+  background-color: white;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  cursor: default;
+}
+.registerCard{
+   height: 70vh;
+  width: 35vw !important;
+  background-color: white;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  cursor: default;
+}
+
+
+.button {
+  width: 100%;
+  height: 40px;
+  border: 2px dashed pink;
+  margin-top: 20px;
+  font-family: "Tagesschrift", system-ui;
+  font-size: 16px;
+}
+.button-text {
+    width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  font-family: "Tagesschrift", system-ui;
+  font-size: 16px;
+}
+.registerText {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.register {
+  color: rgb(248, 104, 128);
+  font-weight: 600;
+  margin-left: 10px !important;
+  font-size: 16px;
+  cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+  .loginCard {
+     height: 45vh;
+  width: 75vw !important;
+  background-color: white;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  cursor: default;
+  }
+  .registerText {
+  margin-top: 20px;
+  font-size: 12px;
+}
+.registerCard{
+   height: 90vh;
+  width: 35vw !important;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  cursor: default;
+}
+}
+@media screen and (max-height: 800px) {
+
+  .registerCard{
+   height: 80vh;
+  width: 75vw !important;
+  background-color: white;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  cursor: default;
+}
+}

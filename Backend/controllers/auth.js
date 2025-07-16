@@ -1,89 +1,126 @@
-const { contextsKey } = require("express-validator/lib/base");
+const bcrypt = require("bcrypt");
 const Auth = require("../models/auth");
-const User = require("../models/user");
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const secretKey = "121212";
-
-async function handleAuth(req, res) {
+const SECRET_KEY = "123456";
+async function handleRegister(req, res) {
   try {
-    const {
-      userName,
-      password,
-      firstName,
-      lastName,
-      age,
-      email,
-      mobileNumber,
-    } = req.body;
+    const { userName, email, phone, password, gender, age } = req.body;
 
-    // Check if username already exists
-    const existingAuth = await Auth.findOne({ userName });
-    if (existingAuth) {
-      return res.status(400).json({ error: "Username already exists" });
+    const userExists = await Auth.findOne({ userName });
+    if (userExists) {
+      return res.status(400).json({
+        error: "User already exists.",
+      });
     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 5);
+    const hashedPass = await bcrypt.hash(password, 10);
 
-    // Create entry in the Auth collection
-    const auth = await Auth.create({ userName, password: hashedPassword });
-
-    // Create entry in the User collection and link it to Auth using authId
-    const user = await User.create({
-      authId: auth._id, // Link Auth document to User document
+    const newUser = await Auth.create({
       userName,
-      firstName,
-      lastName,
-      age,
       email,
-      mobileNumber,
+      phone,
+      password: hashedPass,
+      gender,
+      age,
     });
 
-    return res.status(201).json({
-      message: "User registered successfully",
-      authId: auth._id,
-      userId: user._id,
-      firstName,
-      lastName,
-      age,
-      email,
+    res.status(201).json({
+      message: "User registered successfully!",
+
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        userName: newUser.userName,
+        email: newUser.email,
+      },
     });
   } catch (err) {
-    console.error("Registration Error:", err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error("Registration error:", err); // helpful for debugging
+    res.status(400).json({
+      error: err.message || "Something went wrong.",
+    });
   }
 }
 
 async function handleLogin(req, res) {
   try {
     const { userName, password } = req.body;
-    const isUser = await Auth.findOne({ userName });
-    if (!isUser) {
-      res.status(400).json({
-        error: "User not found",
+    const query = userName ? { userName } : { email };
+    const userData = await Auth.findOne(query); // ✅ FIXED
+
+    if (!userData) {
+      return res.status(400).json({
+        message: "User not found",
       });
     }
-    const isMatch = await bcrypt.compare(password, isUser.password);
-    if (!isMatch) {
-      res.status(400).json({
-        message: "Password not matched",
+
+    const isPassMatch = await bcrypt.compare(password, userData.password); // ✅ now this works fine
+
+    if (!isPassMatch) {
+      return res.status(400).json({
+        message: "Incorrect password",
       });
-    } else {
-      const token = await jwt.sign(
-        { userId: isUser._id }, // Payload
-        secretKey, // Secret key
-        {
-          expiresIn: "24h", // Options
-        }
-      );
-      const userData = await User.findOne({ authId: isUser._id });
-      console.log(userData, isUser._id, "id>>");
-      res.json({ token, userData });
     }
+
+    const token = jwt.sign({ id: userData._id }, SECRET_KEY, {
+      expiresIn: "24h",
+    });
+
+    res.status(200).json({
+      message: "Logged in successfully",
+      token,
+      userData,
+    });
   } catch (err) {
-    console.error("Login Error:", err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error("Login error:", err); // helpful for debugging
+    res.status(400).json({
+      err: err.message || "Something went wrong",
+    });
   }
 }
-module.exports = { handleAuth, handleLogin };
+
+async function getUser(req, res) {
+  try {
+    console.log(req, "params");
+    const { id } = req.params;
+    const userData = await Auth.findById({ _id: id });
+    if (!userData) {
+      res.status(400).json({
+        msg: "User Not Found",
+      });
+      return;
+    }
+    res.status(200).json({
+      msg: "User Data Fetched Successfully",
+      data: userData,
+    });
+  } catch (err) {
+    res.status(400).json({
+      err: err.msg || "Something went wrong",
+    });
+  }
+}
+
+async function updateUser(req, res) {
+  try {
+    const { userName, gender, email, phone, mode, id,age } = req.body;
+
+    const userData = await Auth.findByIdAndUpdate(
+      {_id:id},
+      { userName, gender, email, phone, mode,age },
+      { new: true }
+    );
+
+    if (!userData) {
+      return res.status(400).json({ msg: "User not found" });
+    }
+
+    res.status(200).json({ msg: "User Updated Successfully",data: userData });
+  } catch (err) {
+    res.status(500).json({
+      err: err.message || "Something went wrong",
+    });
+  }
+}
+
+module.exports = { handleRegister, handleLogin, getUser, updateUser, SECRET_KEY };

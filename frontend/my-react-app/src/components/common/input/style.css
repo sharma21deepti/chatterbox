@@ -1,0 +1,40 @@
+.input {
+  height: 40px;
+  margin-bottom: 15px;
+}
+.input:hover {
+  border: 1px solid rgb(248, 104, 128);
+}
+.input::after {
+  border: 1px solid rgb(248, 104, 128);
+}
+.input:focus {
+  border: 1px solid rgb(248, 104, 128);
+}
+.form-item {
+  margin-bottom: 16px;
+  width:100%;
+}
+
+.label-text {
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+  font-family: "Tagesschrift", system-ui;
+  width:100%;
+}
+
+/* Input style */
+.custom-input {
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  padding: 0 12px;
+  transition: border 0.3s ease;
+}
+
+.custom-input:hover,
+.custom-input:focus {
+  border-color: rgb(248, 104, 128);
+  box-shadow: 0 0 0 2px rgba(248, 104, 128, 0.2);
+}

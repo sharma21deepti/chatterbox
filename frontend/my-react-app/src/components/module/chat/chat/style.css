@@ -1,0 +1,63 @@
+.chatlist {
+  /* background-color: rgb(247, 237, 239); */
+  /* background-color: lightpink; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.contactList {
+  padding-top: 10px;
+  min-height: 80vh;
+}
+.ant-list-item {
+  margin: 8px 3px;
+  padding: 5px;
+  border-radius: 10px;
+  /* border: 1px solid pink; */
+  background-color: rgb(252, 213, 220);
+  align-items: start;
+  height: 50px;
+  .chatListItemselected {
+    background-color: rgb(248, 174, 188);
+  }
+}
+.ant-list-item:hover {
+  background-color: pink;
+}
+.ant-list-item-meta {
+  margin-left: 10px;
+}
+.ant-splitter-bar .ant-splitter-bar-dragger {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.lastmessaged {
+  font-size: 10px;
+  color: rgb(53, 53, 53);
+  margin-bottom: -10px;
+  margin-right: 5px;
+}
+.userDetailsProfile {
+  display: flex;
+  gap: 16px;
+  background-color: rgb(245, 166, 178);
+  padding: 10px;
+  height: 35px;
+  border-radius: 10px;
+}
+.userDetailsProfile:hover {
+  cursor: pointer;
+}
+.chatUserNameProfile {
+  font-size: 18px;
+  font-family: "roboto";
+  margin-left: 15px;
+}
+.profilediv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: auto;
+  width: "80%";
+  padding: 10px;
+  border-top: 2px dashed pink;
+}

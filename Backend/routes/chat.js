@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const { handleSendMsg, getChat } = require("../controllers/chat");
+const { saveMsg, handleChatHistory, handleDeleteMsg, handleDownloadMsg } = require("../controllers/message");
+router.post("/", handleSendMsg);
+router.get("/download/:id",handleDownloadMsg);
+router.get("/:id", getChat);
+router.post("/sendMsg", saveMsg);
+router.get("/histroy/:chatId", handleChatHistory);
+router.delete("/:id", handleDeleteMsg);
+module.exports = router;

@@ -1,0 +1,202 @@
+.userDetails {
+  display: flex;
+  gap: 16px;
+  background-color: rgb(245, 135, 153);
+  padding: 10px;
+  height: 60px;
+}
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  margin-left: 10px;
+}
+.userDetails .userDetailsAvatar {
+  margin-left: 20px;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+}
+.chatUserName {
+  font-size: 25px;
+  font-family: "Tagesschrift", system-ui;
+  margin-left: 20px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.msgText {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  margin-left: 10px;
+  width: 98%;
+  justify-content: center;
+  height: 50px;
+  border: 2px dashed pink;
+  background-color: #ffffff;
+  input,
+  input:focus,
+  input:active {
+    border: none;
+    box-shadow: none;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    font-family: "Manrope", sans-serif;
+  }
+  input::after {
+    border: none;
+  }
+  input:hover {
+    border: none;
+  }
+  .sendTextMsgBtn {
+    background-color: #ffffff !important;
+  }
+  .sendTextMsgBtn .material-symbols-outlined {
+    display: flex;
+    font-size: 30px;
+    margin-top: 15px;
+    color: rgb(248, 104, 128);
+    background-color: #ffffff;
+  }
+  .sendTextMsgBtn:hover {
+    color: rgb(250, 63, 95) !important;
+    font-weight: 500;
+    background-color: #ffffff;
+  }
+}
+.chatTextDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4vh;
+  padding: 16px;
+}
+.chatImageMsg1 {
+  background-color: #ebe2db;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 60%;
+  /* font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  font-family: "Manrope", sans-serif; */
+  margin-left: auto;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  .imageFilePerview {
+    height: 200px;
+  }
+}
+.chatImageMsg2 {
+  background-color: rgb(243, 218, 221);
+  max-width: 60%;
+  width: max-content !important;
+  padding: 15px;
+  border-radius: 5px;
+  height: 200px;
+  /* font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  font-family: "Manrope", sans-serif; */
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+  .imageFilePerview {
+    height: 200px;
+  }
+}
+
+.chatMsg1 {
+  background-color: #ebe2db;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 60%;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  font-family: "Manrope", sans-serif;
+  margin-left: auto;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+}
+.chatMsg2 {
+  background-color: rgb(243, 218, 221);
+  max-width: 60%;
+  width: max-content !important;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  font-family: "Manrope", sans-serif;
+  box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+}
+.chatContainer {
+  background-color: rgb(245, 236, 238);
+}
+.chatTextDiv {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.chatContainerEmpty {
+  background-color: rgb(245, 236, 238);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.contactMsg {
+}
+.imagePreviewSpan {
+  padding: 10px;
+  background-color: whitesmoke;
+  height: 200px;
+  width: fit-content;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  margin-bottom: 5px;
+  display: flex;
+
+  .closeImageBtn {
+    margin-left: -30px;
+    z-index: 999;
+    height: 30px;
+    width: 30px;
+    background-color: whitesmoke;
+    border-radius: 60%;
+    opacity: 0.7;
+    padding: 10px;
+
+    .close {
+      margin-right: 10px;
+    }
+    .oneViewImageBtn{
+      margin-left: -30px;
+    z-index: 999;
+    height: 30px;
+    width: 30px;
+    background-color: whitesmoke;
+    border-radius: 60%;
+    opacity: 0.7;
+    padding: 10px;
+    
+    }
+  }
+}
+.imagePreviewSpan .imageFilePerview {
+  height: 200px;
+  width: 300px;
+  z-index: 400;
+  /* margin-bottom: 5px; */
+}
+
+.msgTooltip.ant-tooltip.ant-tooltip-inner {
+  background-color: none;
+}
+.msgTooltip
+{
+  display: flex;
+  padding:8px;
+  flex-direction: column;
+  gap:5px;
+}

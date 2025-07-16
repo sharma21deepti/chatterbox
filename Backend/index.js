@@ -1,31 +1,44 @@
 const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const PORT = 8000;
-const userData = require("./MOCK_DATA.json");
-const logReqRes = require("./middleware");
-const path = require("path");
-
-//Connection
+const cors = require("cors");
+const http = require("http");
+const { setupSocket } = require("./controllers/sockethandler");
 const { connectMongoDb } = require("./connections");
-connectMongoDb("mongodb://127.0.0.1:27017/practice");
+const { Server } = require("socket.io");
+const app = express();
 
-//Setting Up Ejs
-app.set("view engine", "ejs");
-app.set("views", path.resolve("./views"));
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
 
-//Loggin req and res data middleware
-app.use(logReqRes("log.txt"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-//Routes
-const userRoutes = require("./routes/users");
-const urlRoutes = require("./routes/url");
-const authRoutes = require("./routes/auth");
-// Routes
-app.use("/user", userRoutes);
-app.use("/url", urlRoutes);
-app.use("/auth", authRoutes);
-app.listen(PORT, () => {
-  console.log("server Started");
+// Apply CORS globally
+app.use(cors(corsOptions));
+
+// // Optional: preflight route handling
+// app.options("/*", cors(corsOptions));
+
+const PORT = 8000;
+const server = http.createServer(app);
+const io = new Server(server, {
+  path: "/chat/socket.io",
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
 });
+
+setupSocket(io);
+app.use(express.json());
+
+const AuthRoutes = require("./routes/auth");
+const DiaryRoutes = require("./routes/diary");
+const ContactRoute = require("./routes/contacts");
+const ChatRoute = require("./routes/chat");
+app.use("/auth", AuthRoutes);
+app.use("/diary", DiaryRoutes);
+app.use("/contact", ContactRoute);
+app.use("/chat", ChatRoute);
+connectMongoDb("mongodb://127.0.0.1:27017/diary");
+server.listen(PORT, () => console.log("Server Started"));
